@@ -1,0 +1,72 @@
+React: It is the UI library used to build user interfaces.
+Redux: it is the state management library in a pradictable way in javascript application.
+React Redux is the official Redux UI binding library for React.
+Redux is a pradictable state container for javascript apps.
+let's break defination into three parts to better understand:
+1. it is for javascript apps.
+2. it is a state container.
+3. it is pradictable.
+
+Three princple of redux:
+1. store
+2. application
+3. reducer
+
+Store:
+1. Holds app state value
+2. Allow access to state via getState()
+3. Allow state to be updated via dispatch(action)
+4. Register listner via subscribe(listner)
+5. Handles unregistring of listner via the function return by subscribe(listner)
+
+Spred operator:- to clone state value
+
+subscribe(listener):Adds a change listener. It will be called any time an action is dispatched, and some part of 
+    the state tree may potentially have changed. You may then call getState() to read the current state tree inside the callback.
+
+reducer: reducer is a function which takes two arguments -- the current state and an action -- and 
+    returns based on both arguments a new state.
+    As example, it would look like the following in JavaScript for the scenario of increasing a number by one:
+
+    function counterReducer(state, action) {
+    return state + 1;
+    }
+
+Redux thunk:Redux and stuff is fine. What is “Thunk” anyway?
+    The word “Thunk” may seem vague at first but to put in amazingly simple terms, Thunk is just a function returned from another function.
+    :Redux Thunk is a middleware that allows you to call the action creators that return a function(thunk) which takes the store’s dispatch 
+     method as the argument and which is afterwards used to dispatch the synchronous action after the API or side effects has been finished.
+
+Async action creater =>
+Redux thunk => middleware = function(dispatch){}
+axios => user to request API end point
+
+initial state:
+loading: false,
+users:[],
+error:'',
+
+1: userrequest(){
+
+}
+usersuccess(){
+
+}
+usererror(){
+
+}
+useSelector():-const result: any = useSelector(selector: Function, equalityFn?: Function)
+    Allows you to extract data from the Redux store state, using a selector function.
+    The selector function should be pure since it is potentially executed multiple times and at arbitrary points in time.
+    The selector is approximately equivalent to the mapStateToProps argument to connect conceptually. The selector will be called with the entire 
+    Redux store state as its only argument. The selector will be run whenever the function component renders (unless its reference hasn't changed 
+    since a previous render of the component so that a cached result can be returned by the hook without re-running the selector). useSelector() will 
+    also subscribe to the Redux store, and run your selector whenever an action is dispatched.
+
+    However, there are some differences between the selectors passed to useSelector() and a mapState function:
+    The selector may return any value as a result, not just an object. The return value of the selector will be used as the return value of the useSelector() hook.
+    When an action is dispatched, useSelector() will do a reference comparison of the previous selector result value and the current result value. If they are different, 
+    the component will be forced to re-render. If they are the same, the component will not re-render.
+    The selector function does not receive an ownProps argument. However, props can be used through closure (see the examples below) or by using a curried selector.
+    Extra care must be taken when using memoizing selectors (see examples below for more details).
+    useSelector() uses strict === reference equality checks by default, not shallow equality (see the following section for more details).
